@@ -22,12 +22,16 @@
             "Composer\\Config::disableProcessTimeout",
             "bin/run-server.sh"
         ],
-        "start": "@start:windows"
+        "start": "@start:windows",
+        "test:cs": "php vendor/bin/php-cs-fixer fix --dry-run",
+        "fix:cs": "php vendor/bin/php-cs-fixer fix"
     },
     "scripts-descriptions": {
         "start:windows": "Démarre le serveur de développement pour windows",
         "start:linux": "Démarre le serveur de développement pour linux",
-        "start": "Référence au script start:windows"
+        "start": "Référence au script start:windows",
+        "test:cs": "Vérifie la conformité des fichiers du projet avec la configuration PSR-12",
+        "fix:cs": "Refactorise les fichiers non conformes à la configuration PSR-12"
     },
     "require": {
       "ext-pdo": "*"
