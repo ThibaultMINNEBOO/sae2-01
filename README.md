@@ -41,3 +41,19 @@ composer start:windows
 ```
 
 Par défaut, vous pouvez utiliser la commande `composer start` afin de lancer directement le serveur sous **Windows**.
+
+## Style de codage
+
+Nous utilisons dans ce projet la configuration PSR-12, voici les commandes nécessaire à la vérifications et à la correction des fichiers du projet : 
+
+* Afin de vérifier la conformité des fichiers au standard PSR-12, veuillez taper la commande : 
+
+```shell
+composer test:cs
+```
+
+* Afin de corriger les fichiers non conformes au standard PSR-12, veuillez taper la commande : 
+
+```shell
+composer fix:cs
+```
