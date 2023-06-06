@@ -13,6 +13,22 @@
             "email": "thibault.minneboo@etudiant.univ-reims.fr"
         }
     ],
+    "scripts": {
+        "start:windows": [
+            "Composer\\Config::disableProcessTimeout",
+            "bin/run-server.bat"
+        ],
+        "start:linux": [
+            "Composer\\Config::disableProcessTimeout",
+            "bin/run-server.sh"
+        ],
+        "start": "@start:windows"
+    },
+    "scripts-descriptions": {
+        "start:windows": "Démarre le serveur de développement pour windows",
+        "start:linux": "Démarre le serveur de développement pour linux",
+        "start": "Référence au script start:windows"
+    },
     "require": {
       "ext-pdo": "*"
     }
