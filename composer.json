@@ -13,5 +13,7 @@
             "email": "thibault.minneboo@etudiant.univ-reims.fr"
         }
     ],
-    "require": {}
+    "require": {
+      "ext-pdo": "*"
+    }
 }
