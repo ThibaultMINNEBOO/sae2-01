@@ -1,6 +1,6 @@
 # SAé 2.01 - Consultation d'une base de donnée
 
-### Auteur(s) : [Thibault MINNEBOO](mailto://thibault.minneboo@etudiant.univ-reims.fr), [Nathan MERIEUX](mailto://nathan.merieux@etudiant.univ-reims.fr)
+### Auteur(s) : [Thibault MINNEBOO](mailto://thibault.minneboo@etudiant.univ-reims.fr)
 
 ## Installation / Configuration
 
@@ -24,3 +24,20 @@ cd sae2-01
 composer install
 ```
 
+## Serveur Web Local
+
+Afin de lancer le serveur de développement sur l'adresse [http://localhost:8000](http://localhost:8000/), veuillez utiliser les commandes suivantes : 
+
+### Pour Linux
+
+```shell
+composer start:linux
+```
+
+### Pour Windows
+
+```shell
+composer start:windows
+```
+
+Par défaut, vous pouvez utiliser la commande `composer start` afin de lancer directement le serveur sous **Windows**.
