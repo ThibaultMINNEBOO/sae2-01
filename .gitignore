@@ -1,0 +1,4 @@
+# Dossiers de configuration
+.idea/
+.vscode/
+/vendor/

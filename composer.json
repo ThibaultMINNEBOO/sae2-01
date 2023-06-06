@@ -1,0 +1,17 @@
+{
+    "name": "minn0004/sae2-01",
+    "description": "Site web de consultation de base de donnée",
+    "license": "Copyleft",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Thibault MINNEBOO",
+            "email": "thibault.minneboo@etudiant.univ-reims.fr"
+        }
+    ],
+    "require": {}
+}
