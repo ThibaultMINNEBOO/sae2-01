@@ -57,3 +57,14 @@ composer test:cs
 ```shell
 composer fix:cs
 ```
+
+## Base de donnée
+
+Le projet nécessite un fichier nommé `.mypdo.ini` à la racine du projet contenant les informations suivantes : 
+
+```ini
+[mypdo]
+dsn = 
+username = 
+password = 
+```
