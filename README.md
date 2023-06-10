@@ -1,6 +1,6 @@
 # SAé 2.01 - Consultation d'une base de donnée
 
-### Auteur(s) : [Thibault MINNEBOO](mailto://thibault.minneboo@etudiant.univ-reims.fr)
+### Auteur(s) : [Thibault MINNEBOO (minn0004)](mailto://thibault.minneboo@etudiant.univ-reims.fr)
 
 ## Installation / Configuration
 
