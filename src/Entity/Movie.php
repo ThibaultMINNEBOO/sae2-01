@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Entity;
 
+use Database\MyPdo;
 use DateTime;
+use Entity\Exception\EntityNotFoundException;
 use Exception;
+use PDO;
 
 class Movie
 {
@@ -251,5 +254,38 @@ class Movie
     {
         $this->posterId = $posterId;
         return $this;
+    }
+
+    /**
+     * Retourne le film avec l'identifiant renseigné.
+     * Si aucun film n'est trouvé, cela renvoie une exception de type EntityNotFoundException
+     *
+     * @param int $id
+     * @return Movie
+     * @throws EntityNotFoundException
+     */
+    public static function findById(int $id): Movie
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM movie
+            WHERE id = :movie_id;
+            SQL
+        );
+
+        $stmt->execute([
+            ':movie_id' => $id
+        ]);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Movie::class);
+
+        $movie = $stmt->fetch();
+
+        if (!$movie) {
+            throw new EntityNotFoundException("no movie with this id found");
+        }
+
+        return $movie;
     }
 }
