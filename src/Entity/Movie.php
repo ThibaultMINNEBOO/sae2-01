@@ -299,22 +299,32 @@ class Movie
      *
      * @param string $title Le titre du film
      * @param string $overview Le résumé du film
-     * @param string $tagline Le slogan du film
+     * @param $
      * @param int|null $id l'identifiant du film
      * @return Movie Le film créé
      */
-    public static function create(string $title, string $overview, string $tagline, ?int $id = null): Movie
+    public static function create(string $title, string $overview, int $runtime, DateTime $releaseDate, string $originalLanguage = '', string $tagline = '', string $originalTitle = '', ?int $posterId = null, ?int $id = null): Movie
     {
         $movie = new Movie();
 
         $movie->setId($id)
               ->setTitle($title)
               ->setOverview($overview)
-              ->setTagline($tagline);
+              ->setTagline($tagline)
+              ->setRuntime($runtime)
+              ->setReleaseDate(date_format($releaseDate, 'Y-m-d'))
+              ->setOriginalTitle($originalTitle)
+              ->setOriginalLanguage($originalLanguage)
+              ->setPosterId($posterId);
 
         return $movie;
     }
 
+    /**
+     * Supprime l'instance de Movie dans la base de donnée
+     *
+     * @return Movie
+     */
     public function delete(): Movie
     {
         $stmt = MyPdo::getInstance()->prepare(
@@ -329,6 +339,39 @@ class Movie
         ]);
 
         $this->setId(null);
+
+        return $this;
+    }
+
+    /**
+     * Ajoute l'instance dans la base de donnée
+     *
+     * @return Movie
+     * @throws Exception
+     */
+    protected function insert(): Movie
+    {
+        $pdo = MyPdo::getInstance();
+
+        $stmt = $pdo->prepare(
+            <<<'SQL'
+            INSERT INTO movie (posterId, originalLanguage, originalTitle, overview, releaseDate, runtime, tagline, title)
+            VALUES (:poster_id, :original_language, :original_title, :overview, :release_date, :runtime, :tagline, :title);
+            SQL
+        );
+
+        $stmt->execute([
+            ':poster_id' => $this->getPosterId(),
+            ':original_language' => $this->getOriginalLanguage(),
+            ':original_title' => $this->getOriginalTitle(),
+            ':overview' => $this->getOverview(),
+            ':release_date' => $this->getReleaseDate(),
+            ':runtime' => $this->getRuntime(),
+            ':tagline' => $this->getTagline(),
+            ':title' => $this->getTitle()
+        ]);
+
+        $this->setId((int) $pdo->lastInsertId());
 
         return $this;
     }
