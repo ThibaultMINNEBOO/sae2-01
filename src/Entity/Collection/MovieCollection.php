@@ -11,6 +11,8 @@ use PDO;
 class MovieCollection
 {
     /**
+     * Retourne la liste de tous les films
+     *
      * @return Movie[] un tableau composé de Movie
      */
     public static function findAll(): array
