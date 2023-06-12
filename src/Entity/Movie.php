@@ -293,13 +293,43 @@ class Movie
         return $movie;
     }
 
-    public static function create(string $title, ?int $id = null): Movie
+    /**
+     * Créé un un nouveau film.
+     * Si l'identifiant entré n'est pas null, il sera
+     *
+     * @param string $title Le titre du film
+     * @param string $overview Le résumé du film
+     * @param string $tagline Le slogan du film
+     * @param int|null $id l'identifiant du film
+     * @return Movie Le film créé
+     */
+    public static function create(string $title, string $overview, string $tagline, ?int $id = null): Movie
     {
         $movie = new Movie();
 
         $movie->setId($id)
-              ->setTitle($title);
+              ->setTitle($title)
+              ->setOverview($overview)
+              ->setTagline($tagline);
 
         return $movie;
+    }
+
+    public function delete(): Movie
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            DELETE FROM movie
+            WHERE id = :movie_id;
+            SQL
+        );
+
+        $stmt->execute([
+            ':movie_id' => $this->getId()
+        ]);
+
+        $this->setId(null);
+
+        return $this;
     }
 }
