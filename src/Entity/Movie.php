@@ -53,9 +53,9 @@ class Movie
     private string $title;
 
     /**
-     * @var int L'identifiant du poster associé au film
+     * @var int|null L'identifiant du poster associé au film
      */
-    private int $posterId;
+    private ?int $posterId;
 
     private function __construct()
     {
@@ -242,9 +242,9 @@ class Movie
     /**
      * Retourne l'identifiant du poster associé au film
      *
-     * @return int
+     * @return int|null
      */
-    public function getPosterId(): int
+    public function getPosterId(): ?int
     {
         return $this->posterId;
     }
