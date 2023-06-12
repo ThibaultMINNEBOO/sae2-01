@@ -8,19 +8,23 @@ use Html\AppWebPage;
 $webPage = new AppWebPage('Films');
 
 $movies = MovieCollection::findAll();
+$webPage->appendCssUrl("/css/style_index.css");
 
 $webPage->appendContent("<section class='movies'>");
 
 foreach ($movies as $movie) {
-    $moviePoster = $movie->getPosterId() ? "poster.php?id={$movie->getPosterId()}" : '/img/default_movie.png';
     $webPage->appendContent(
         <<<HTML
-        <div class="movies__card">
-            <img src="{$moviePoster}" alt="">
-            <h1 class="card__title">{$webPage->escapeString($movie->getTitle())}</h1>
-        </div>
+        <a href="movie.php?id={$movie->getId()}">
+            <div class="movies__card">
+                <img class="card__poster" src="poster.php?id={$movie->getPosterId()}" alt="Poster du film {$movie->getTitle()}">
+                <h1 class="card__title">{$webPage->escapeString($movie->getTitle())}</h1>
+            </div>
+        </a>
         HTML
     );
 }
+
+$webPage->appendContent("</section>");
 
 echo $webPage->toHTML();
