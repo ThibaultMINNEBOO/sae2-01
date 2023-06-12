@@ -13,9 +13,9 @@ use PDO;
 class Movie
 {
     /**
-     * @var int L'identifiant du film
+     * @var int|null L'identifiant du film
      */
-    private int $id;
+    private ?int $id;
 
     /**
      * @var string Le titre original du film
@@ -57,12 +57,17 @@ class Movie
      */
     private int $posterId;
 
+    private function __construct()
+    {
+
+    }
+
     /**
      * Retourne l'identifiant du film
      *
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -73,7 +78,7 @@ class Movie
      * @param int|null $id
      * @return Movie
      */
-    public function setId(?int $id): Movie
+    private function setId(?int $id): Movie
     {
         $this->id = $id;
         return $this;
@@ -258,11 +263,10 @@ class Movie
 
     /**
      * Retourne le film avec l'identifiant renseigné.
-     * Si aucun film n'est trouvé, cela renvoie une exception de type EntityNotFoundException
      *
      * @param int $id
      * @return Movie
-     * @throws EntityNotFoundException
+     * @throws EntityNotFoundException Si aucun film ne correspond à l'identifiant passé en paramètre
      */
     public static function findById(int $id): Movie
     {
@@ -285,6 +289,16 @@ class Movie
         if (!$movie) {
             throw new EntityNotFoundException("no movie with this id found");
         }
+
+        return $movie;
+    }
+
+    public static function create(string $title, ?int $id = null): Movie
+    {
+        $movie = new Movie();
+
+        $movie->setId($id)
+              ->setTitle($title);
 
         return $movie;
     }
