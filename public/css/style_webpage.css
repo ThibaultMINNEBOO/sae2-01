@@ -1,0 +1,31 @@
+:root {
+    --primary-color: rgba(52, 88, 209);
+    --secondary-color: rgb(217, 223, 50);
+    --dark-color: #1c1c1c;
+}
+
+*, ::after, ::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    text-decoration: none;
+}
+
+body {
+    background: var(--dark-color);
+}
+
+header.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15vh;
+    width: 100%;
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+.content {
+    padding: 30px 20px;
+}

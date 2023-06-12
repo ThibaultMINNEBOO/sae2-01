@@ -1,0 +1,40 @@
+.movies {
+    display: flex;
+    align-items: center;
+    height: 85vh;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.movies__card {
+    padding: 10px 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    gap: 20px;
+    box-shadow: 0 0 13px var(--primary-color);
+    width: 280px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 20px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.movies__card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 13px var(--secondary-color);
+}
+
+.movies__card .card__poster {
+    border-radius: 20px;
+}
+
+.movies__card .card__title {
+    font-variant: small-caps;
+    font-weight: 900;
+}
