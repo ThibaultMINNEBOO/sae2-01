@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Entity;
 
+use Database\MyPdo;
+use PDO;
+
 class Actor
 {
     /**
@@ -94,5 +97,27 @@ class Actor
     public function getPlaceOfBirth(): string
     {
         return $this->placeOfBirth;
+    }
+
+    /**
+     * Retourne la liste des castings auquel a participé l'acteur
+     *
+     * @return Casting[]
+     */
+    public function getCastings(): array
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM cast
+            WHERE peopleId = :actor_id;
+            SQL
+        );
+
+        $stmt->execute([
+            ':actor_id' => $this->getId()
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Casting::class);
     }
 }
