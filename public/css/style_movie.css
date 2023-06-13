@@ -1,0 +1,134 @@
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.actors {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.actor img {
+    box-shadow: 0 0 10px var(--primary-color);
+    border-radius: 10px;
+}
+
+.movie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.movie__details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.movie img {
+    border-radius: 20px;
+    border: 1px solid var(--primary-color)
+}
+
+.movie__header h4 {
+    padding: 10px 20px;
+    background: var(--primary-color);
+    border-radius: 20px;
+}
+
+.movie__header h1 {
+    font-variant: small-caps;
+}
+
+.movie__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.movie__body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.movie__body p {
+    text-align: center;
+}
+
+.actor {
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 40px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.4);
+    gap: 3em;
+    border-radius: 20px;
+    border: 1px solid #FFF;
+    transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.actor:hover {
+    transform: scale(1.03);
+    box-shadow: 5px 5px 10px var(--secondary-color);
+}
+
+.actor__details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 900px) {
+    .actors {
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+    }
+
+    .actor {
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10em;
+    }
+
+    .actor__details {
+        justify-content: flex-end;
+        align-self: center;
+    }
+
+    .movie {
+        flex-direction: row;
+        gap: 50px;
+    }
+
+    .movie__body {
+        align-items: flex-start;
+    }
+
+    .movie__body p {
+        text-align: left;
+    }
+
+    .movie__body h5 {
+        align-self: flex-end;
+    ;
+    }
+}
