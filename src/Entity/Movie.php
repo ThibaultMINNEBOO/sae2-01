@@ -375,4 +375,26 @@ class Movie
 
         return $this;
     }
+
+    /**
+     * Retourne la liste des castings d'un film
+     *
+     * @return Casting[]
+     */
+    public function getCastings(): array
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM cast
+            WHERE movieId = :movie_id;
+            SQL
+        );
+
+        $stmt->execute([
+            ':movie_id' => $this->getId()
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Casting::class);
+    }
 }
