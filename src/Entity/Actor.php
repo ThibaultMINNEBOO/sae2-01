@@ -14,9 +14,9 @@ class Actor
     private int $id;
 
     /**
-     * @var int l'identifiant de l'avatar de l'acteur
+     * @var int|null l'identifiant de l'avatar de l'acteur
      */
-    private int $avatarId;
+    private ?int $avatarId;
 
     /**
      * @var string le nom de l'acteur
@@ -24,14 +24,14 @@ class Actor
     private string $name;
 
     /**
-     * @var string la date de naissance de l'acteur
+     * @var string|null la date de naissance de l'acteur
      */
-    private string $birthday;
+    private ?string $birthday;
 
     /**
-     * @var string la date de décès de l'acteur
+     * @var string|null la date de décès de l'acteur
      */
-    private string $deathday;
+    private ?string $deathday;
 
     /**
      * @var string la biographie de l'acteur
@@ -52,9 +52,9 @@ class Actor
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getAvatarId(): int
+    public function getAvatarId(): ?int
     {
         return $this->avatarId;
     }
