@@ -68,7 +68,7 @@ class Casting
             <<<'SQL'
             SELECT *
             FROM people
-            WHERE id = (
+            WHERE id IN (
                 SELECT peopleId
                 FROM cast
                 WHERE peopleId = :actor_id
@@ -96,7 +96,7 @@ class Casting
             <<<'SQL'
             SELECT *
             FROM movie
-            WHERE id = (
+            WHERE id IN (
                 SELECT movieId
                 FROM cast
                 WHERE movieId = :movie_id
