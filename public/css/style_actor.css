@@ -1,0 +1,134 @@
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.actor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.actor img {
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+}
+
+.actor__details {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.actor__details h1 {
+    font-variant: small-caps;
+    text-shadow: 0 0 14px var(--primary-color);
+}
+
+.actor__details h2 {
+    color: var(--secondary-color)
+}
+
+.actor__life {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.actor__date {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background: var(--primary-color);
+}
+
+.actor__details p {
+    text-align: center;
+}
+
+.movies {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.movie {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.movie:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px var(--secondary-color);
+}
+
+.movie__details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.movie__info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.movie img {
+    border-radius: 20px;
+    border: 1px solid var(--primary-color)
+}
+
+.movie__details h1 {
+    font-variant: small-caps;
+}
+
+.movie__date {
+    padding: 10px 20px;
+    border-radius: 20px;
+    background: var(--primary-color);
+}
+
+@media screen and (min-width: 900px) {
+    .actor {
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    .actor img {
+        align-self: flex-start;
+        height: 240px;
+    }
+
+    .actor p {
+        text-align: start;
+    }
+
+    .actor__details {
+        align-items: flex-start;
+    }
+
+    .movie {
+        flex-direction: row;
+        gap: 50px;
+    }
+
+    .movie__info {
+        flex-direction: row;
+    }
+}
