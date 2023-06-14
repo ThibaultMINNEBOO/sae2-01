@@ -46,6 +46,9 @@ try {
         HTML
     );
 
+    $webPage->pushMenu("/admin/movie-form.php?id={$movie->getId()}", "Modifier")
+            ->pushMenu("/admin/movie-delete.php?id={$movie->getId()}", "Supprimer");
+
     foreach ($castings as $casting) {
         $webPage->appendContent(
             <<<HTML
