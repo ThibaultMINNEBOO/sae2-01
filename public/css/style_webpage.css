@@ -26,6 +26,32 @@ header.header {
     box-shadow: 0 0 20px var(--primary-color);
 }
 
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10vh;
+    gap: 30px;
+    background: var(--primary-color);
+    flex-wrap: wrap;
+}
+
+.menu__link {
+    border-radius: 30px;
+    background: #FFFFFF;
+    color: #1c1c1c;
+    padding: 10px 20px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+    font-variant: small-caps;
+    font-weight: 900;
+    transition: 0.3s ease-in-out;
+}
+
+.menu__link:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 0;
+}
+
 .content {
     padding: 30px 20px;
 }
