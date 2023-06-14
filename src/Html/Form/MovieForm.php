@@ -5,6 +5,7 @@ namespace Html\Form;
 
 use Entity\Movie;
 use Exception;
+use Exception\ParameterException;
 use Html\StringEscaper;
 
 class MovieForm
@@ -64,5 +65,28 @@ class MovieForm
             <button type="submit">Enregistrer</button>
         </form>
         HTML;
+    }
+
+    /**
+     * Définit le film selon ce qui a été envoyé en POST
+     *
+     * @throws ParameterException
+     */
+    public function setEntityFromQueries(): void
+    {
+        if (isset($_POST['name']) && isset($_POST['id']) && isset($_POST['runtime']) && isset($_POST['tagline']) && isset($_POST['releaseDate']) && isset($_POST['overview'])) {
+            $id = (!empty($_POST['id']) && is_numeric($_POST['id'])) ? (int) $_POST['id'] : null;
+
+            if (empty($_POST['name']) || empty($_POST['runtime']) || empty($_POST['releaseDate'])) {
+                throw new ParameterException("no correct data mentioned in query string");
+            }
+
+            $title = $this->stripTagsAndTrim($_POST['title']);
+            $tagline = $this->stripTagsAndTrim($_POST['tagline']);
+            $runtime = (int) $_POST['runtime'];
+            $releaseDate = $_POST['releaseDate'];
+            $overview = $this->stripTagsAndTrim($_POST['overview']);
+            $this->movie = Movie::create($title, $overview, $runtime, $releaseDate, '', $tagline, '', null, $id);
+        }
     }
 }
