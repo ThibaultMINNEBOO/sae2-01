@@ -30,7 +30,7 @@ class AppWebPage extends WebPage
         </head>
         <body>
             <header class="header">
-                <h1>{$this->getTitle()}</h1>
+                <h1><a href="/">{$this->getTitle()}</a></h1>
             </header>
             <main class="content">
                 {$this->getBody()}
