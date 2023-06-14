@@ -252,10 +252,10 @@ class Movie
     /**
      * Modifie l'idenfifiant du poster du film
      *
-     * @param int $posterId
+     * @param int|null $posterId
      * @return Movie
      */
-    public function setPosterId(int $posterId): Movie
+    public function setPosterId(?int $posterId): Movie
     {
         $this->posterId = $posterId;
         return $this;
@@ -365,7 +365,7 @@ class Movie
             ':original_language' => $this->getOriginalLanguage(),
             ':original_title' => $this->getOriginalTitle(),
             ':overview' => $this->getOverview(),
-            ':release_date' => $this->getReleaseDate(),
+            ':release_date' => date_format($this->getReleaseDate(), 'Y-m-d'),
             ':runtime' => $this->getRuntime(),
             ':tagline' => $this->getTagline(),
             ':title' => $this->getTitle()
