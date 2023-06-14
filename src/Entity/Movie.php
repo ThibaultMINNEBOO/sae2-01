@@ -411,6 +411,23 @@ class Movie
     }
 
     /**
+     * Sauvegarde le film dans la base de donnée
+     *
+     * @throws \Exception
+     * @return Movie
+     */
+    public function save(): Movie
+    {
+        if ($this->getId()) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
+
+        return $this;
+    }
+
+    /**
      * Retourne la liste des castings d'un film
      *
      * @return Casting[]
