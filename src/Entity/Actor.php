@@ -1,9 +1,13 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Entity;
 
 use Database\MyPdo;
+use DateTime;
+use Entity\Exception\EntityNotFoundException;
+use Exception;
 use PDO;
 
 class Actor
@@ -44,6 +48,37 @@ class Actor
     private string $placeOfBirth;
 
     /**
+     * Retourne l'acteur correspondant à l'identifiant passé en paramètre
+     *
+     * @param int $id l'identifiant de l'acteur
+     * @return Actor
+     * @throws EntityNotFoundException Si l'acteur n'est pas trouvé
+     */
+    public static function findById(int $id): Actor
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            <<<'SQL'
+            SELECT *
+            FROM people
+            WHERE id = :actor_id;
+            SQL
+        );
+
+        $stmt->execute([
+            ':actor_id' => $id
+        ]);
+
+        $stmt->setFetchMode(PDO::FETCH_CLASS, Actor::class);
+
+        $actor = $stmt->fetch();
+        if (!$actor) {
+            throw new EntityNotFoundException("no actor found with this id");
+        }
+
+        return $actor;
+    }
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -68,19 +103,27 @@ class Actor
     }
 
     /**
-     * @return string
+     * @return DateTime|null
+     * @throws Exception
      */
-    public function getBirthday(): string
+    public function getBirthday(): ?DateTime
     {
-        return $this->birthday;
+        if (!$this->birthday) {
+            return null;
+        }
+        return new DateTime($this->birthday);
     }
 
     /**
-     * @return string
+     * @return DateTime|null
+     * @throws Exception
      */
-    public function getDeathday(): string
+    public function getDeathday(): ?DateTime
     {
-        return $this->deathday;
+        if (!$this->deathday) {
+            return null;
+        }
+        return new DateTime($this->deathday);
     }
 
     /**
