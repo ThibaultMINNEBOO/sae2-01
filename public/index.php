@@ -26,5 +26,11 @@ foreach ($movies as $movie) {
 }
 
 $webPage->appendContent("</section>");
+$webPage->appendContent(
+    <<<HTML
+    <a href="/admin/movie-form.php"><span class="add-button">+</span></a>
+    HTML
+
+);
 
 echo $webPage->toHTML();

@@ -18,10 +18,8 @@ try {
     header('Content-Type: image/jpeg');
 
     echo $poster->getJpeg();
-} catch (ParameterException $e) {
-    http_response_code(400);
-} catch (EntityNotFoundException $e) {
-    header('Location: /img/default_poster.png');
+} catch (ParameterException|EntityNotFoundException $e) {
+    header('Location: /img/default_movie.png');
 } catch (Exception $e) {
     http_response_code(500);
 }

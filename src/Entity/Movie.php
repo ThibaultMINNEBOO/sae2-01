@@ -252,10 +252,10 @@ class Movie
     /**
      * Modifie l'idenfifiant du poster du film
      *
-     * @param int $posterId
+     * @param int|null $posterId
      * @return Movie
      */
-    public function setPosterId(int $posterId): Movie
+    public function setPosterId(?int $posterId): Movie
     {
         $this->posterId = $posterId;
         return $this;
@@ -365,13 +365,64 @@ class Movie
             ':original_language' => $this->getOriginalLanguage(),
             ':original_title' => $this->getOriginalTitle(),
             ':overview' => $this->getOverview(),
-            ':release_date' => $this->getReleaseDate(),
+            ':release_date' => date_format($this->getReleaseDate(), 'Y-m-d'),
             ':runtime' => $this->getRuntime(),
             ':tagline' => $this->getTagline(),
             ':title' => $this->getTitle()
         ]);
 
         $this->setId((int) $pdo->lastInsertId());
+
+        return $this;
+    }
+
+    /**
+     * Met à jour le film
+     *
+     * @throws \Exception
+     * @return Movie
+     */
+    public function update(): Movie
+    {
+        $pdo = MyPdo::getInstance();
+
+        $stmt = $pdo->prepare(
+            <<<'SQL'
+            UPDATE movie
+            SET title = :title,
+                overview = :overview,
+                releaseDate = :release_date,
+                runtime = :runtime,
+                tagline = :tagline
+            WHERE id = :movie_id;
+            SQL
+        );
+
+        $stmt->execute([
+            ':movie_id' => $this->getId(),
+            ':overview' => $this->getOverview(),
+            ':release_date' => date_format($this->getReleaseDate(), 'Y-m-d'),
+            ':runtime' => $this->getRuntime(),
+            ':tagline' => $this->getTagline(),
+            ':title' => $this->getTitle()
+        ]);
+
+        return $this;
+    }
+
+    /**
+     * Sauvegarde le film dans la base de donnée
+     *
+     * @throws \Exception
+     * @return Movie
+     */
+    public function save(): Movie
+    {
+        if ($this->getId()) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
 
         return $this;
     }

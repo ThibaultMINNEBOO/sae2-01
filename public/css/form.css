@@ -1,0 +1,31 @@
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form__movie {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form__input {
+    padding: 10px 20px;
+    background: transparent;
+    outline: none;
+    border: 1px solid var(--primary-color);
+    border-radius: 20px;
+    resize: none;
+}
+
+button[type=submit] {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: var(--primary-color);
+    outline: none;
+    border: none;
+    margin-top: 10px;
+}
