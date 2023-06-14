@@ -30,7 +30,7 @@ try {
     $webPage->appendContent(
         <<<HTML
         <div class="form">
-            {$form->getHtmlForm('artist-save.php')}
+            {$form->getHtmlForm('movie-save.php')}
         </div>
         HTML
     );
