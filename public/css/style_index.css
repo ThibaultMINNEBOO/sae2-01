@@ -38,3 +38,18 @@
     font-variant: small-caps;
     font-weight: 900;
 }
+
+.add-button {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary-color);
+    font-size: 3.5em;
+}
+
