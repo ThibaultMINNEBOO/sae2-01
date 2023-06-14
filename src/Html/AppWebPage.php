@@ -7,14 +7,33 @@ class AppWebPage extends WebPage
 {
     use StringEscaper;
 
+    private array $menu;
+
     public function __construct(string $title = '')
     {
         parent::__construct($title);
         $this->appendCssUrl("/css/style_webpage.css");
+        $this->menu = [];
+    }
+
+    public function pushMenu(string $link, string $name): AppWebPage
+    {
+        $this->menu[] = "<a class='menu__link' href='{$link}'>{$name}</a>";
+        return $this;
     }
 
     public function toHTML(): string
     {
+        $menuRender = $this->menu ? <<<HTML
+        <div class="menu">
+        HTML : '';
+
+        foreach ($this->menu as $menuLink) {
+            $menuRender .= $menuLink;
+        }
+
+        $menuRender .= "</div>";
+
         return <<<HTML
         <!doctype html>
         <html lang="fr">
@@ -32,6 +51,7 @@ class AppWebPage extends WebPage
             <header class="header">
                 <h1><a href="/">{$this->getTitle()}</a></h1>
             </header>
+            {$menuRender}
             <main class="content">
                 {$this->getBody()}
             </main>
