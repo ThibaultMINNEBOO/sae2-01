@@ -401,7 +401,7 @@ class Movie
         $stmt->execute([
             ':movie_id' => $this->getId(),
             ':overview' => $this->getOverview(),
-            ':release_date' => $this->getReleaseDate(),
+            ':release_date' => date_format($this->getReleaseDate(), 'Y-m-d'),
             ':runtime' => $this->getRuntime(),
             ':tagline' => $this->getTagline(),
             ':title' => $this->getTitle()
