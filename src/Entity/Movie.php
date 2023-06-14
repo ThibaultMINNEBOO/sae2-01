@@ -377,6 +377,40 @@ class Movie
     }
 
     /**
+     * Met à jour le film
+     *
+     * @throws \Exception
+     * @return Movie
+     */
+    public function update(): Movie
+    {
+        $pdo = MyPdo::getInstance();
+
+        $stmt = $pdo->prepare(
+            <<<'SQL'
+            UPDATE movie
+            SET title = :title,
+                overview = :overview,
+                releaseDate = :release_date,
+                runtime = :runtime,
+                tagline = :tagline
+            WHERE id = :movie_id;
+            SQL
+        );
+
+        $stmt->execute([
+            ':movie_id' => $this->getId(),
+            ':overview' => $this->getOverview(),
+            ':release_date' => $this->getReleaseDate(),
+            ':runtime' => $this->getRuntime(),
+            ':tagline' => $this->getTagline(),
+            ':title' => $this->getTitle()
+        ]);
+
+        return $this;
+    }
+
+    /**
      * Retourne la liste des castings d'un film
      *
      * @return Casting[]
